@@ -93,6 +93,9 @@ public class Gadgets {
         } else if (command.startsWith("FILE:")) {
             byte[] bs = Files.readBytes(new File(command.substring(5)));
             return createTemplatesImpl(null, null, bs, tplClass, abstTranslet, transFactory);
+        } else if (command.startsWith("BASE64:")) {
+            byte[] bs = Base64ToClassByteUtil.base64ToBytes(command.substring(7));
+            return createTemplatesImpl(null, null, bs, tplClass, abstTranslet, transFactory);
         } else {
             return createTemplatesImpl(null, command, null, tplClass, abstTranslet, transFactory);
         }
